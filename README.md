@@ -6,3 +6,7 @@ Early version still in development but is currently working
 Admin screen options to set colors, fonts, background colors, layout options, etc.
 Created a dynamic css file to write style sheet
 
+Screenshots
+![alt text](https://raw.githubusercontent.com/MrRedBeard/twentyseventeen-child-theme-with-editor/master/screenshots/1.png)
+![alt text](https://raw.githubusercontent.com/MrRedBeard/twentyseventeen-child-theme-with-editor/master/screenshots/2.png)
+![alt text](https://raw.githubusercontent.com/MrRedBeard/twentyseventeen-child-theme-with-editor/master/screenshots/3.png)

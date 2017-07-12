@@ -44,7 +44,7 @@ header, #masthead
 }
 
 /* SITE BRANDING HEADER (margins padding) */
-#page #masthead, #page header
+#masthead, #page #masthead, #page header
 {	
 	<?php if ( strpos(X2_get_theme_option( 'head_borders' ), 'TLRB') !== false ): ?>
 		border: <?php echo X2_get_theme_option( 'head_border_thickness' ); ?>px solid <?php echo X2_get_theme_option( 'head_border_color' ); ?>;
@@ -163,7 +163,20 @@ header, #masthead
 }
 <?php endif; ?>
 
-
+/* Landing Page Content Width */
+#primary #main .page .panel-content .wrap
+{
+	<?php
+		if (strlen(X2_get_theme_option( 'landing_page_width' )) > 1)
+		{
+		?>
+			max-width: <?php echo X2_get_theme_option( 'landing_page_width' ); ?> !important;;
+			width: <?php echo X2_get_theme_option( 'landing_page_width' ); ?> !important;;
+		<?php
+		}
+		?>
+		
+}
 
 
 /* CONTENT (color) */
@@ -173,9 +186,16 @@ header, #masthead
 }
 
 /* PAGE ARTICLE POST (width) */
-#content .wrap
+#content .wrap, #content .entry-header, #page #content header, #page #content .entry-footer, #comments
 {
 	background-color: <?php echo X2_get_theme_option( 'content_bkg_color' ); ?>;
+}
+
+/* Post Page Heading */
+#page header
+{
+	/* Reset */
+	border: none;
 }
 
 /* Front Page Tile Widgets */
@@ -241,7 +261,7 @@ footer, #colophon
 	color: <?php echo X2_get_theme_option( 'form_fnt_color' ); ?> !important;	
 }
 
-#page input[type=button], #page .pushbutton-wide
+#page input[type=button], #page .pushbutton-wide, .post-edit-link
 {
 	background-color: <?php echo X2_get_theme_option( 'btn_bkg_color' ); ?> !important;	
 }

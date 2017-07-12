@@ -13,7 +13,8 @@ if (! class_exists('X2_Theme_Options'))
 		public function __construct()
 		{
 			// We only need to register the admin panel on the back-end
-			if ( is_admin() ) {
+			if ( is_admin() ) 
+			{
 				add_action( 'admin_menu', array( 'X2_Theme_Options', 'add_admin_menu' ) );
 				add_action( 'admin_init', array( 'X2_Theme_Options', 'register_settings' ) );
 			}
@@ -172,9 +173,47 @@ if (! class_exists('X2_Theme_Options'))
 									<p>Standard layout</p>
 								</div>
 							</div>
-
 						</div>
 					</div>
+					
+					<div class="X2AdminSection">
+						<h2>Slider</h2>
+						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'x2Tr' ); ?>
+							<p>Slider:&nbsp;</p><input type="range" id="x2Tr" name="theme_options[x2Tr]" value="<?php echo esc_attr( $value ); ?>" min="0" max="1" step=".01" onchange="showValue(this.value)"> Value: <span id="x2TrVal"><?php echo esc_attr( $value ); ?></span>
+							<script type="text/javascript">
+								function showValue(newValue)
+								{
+									document.getElementById("x2TrVal").innerHTML=newValue;
+								}
+							</script>
+						</div>
+						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'x2Tr' ); ?>
+							<p>Slider:&nbsp;</p><input type="range" id="x2Tr" name="theme_options[x2Tr]" value="<?php echo esc_attr( $value ); ?>" min="0" max="1" step=".01" onchange="showValue(this.value)"> Value: <span id="x2TrVal"><?php echo esc_attr( $value ); ?></span>
+							<input type="range" list="tickmarks">
+							<datalist id="tickmarks">
+							  <option value="0" label="0%">
+							  <option value="10">
+							  <option value="20">
+							  <option value="30">
+							  <option value="40">
+							  <option value="50" label="50%">
+							  <option value="60">
+							  <option value="70">
+							  <option value="80">
+							  <option value="90">
+							  <option value="100" label="100%">
+							</datalist>
+							<script type="text/javascript">
+								function showValue(newValue)
+								{
+									document.getElementById("x2TrVal").innerHTML=newValue;
+								}
+							</script>
+						</div>
+					</div>
+					
 					
 					<div class="X2AdminSection">
 						<h2>Front Page</h2>
@@ -182,6 +221,12 @@ if (! class_exists('X2_Theme_Options'))
 							<?php // Number of Front Page Panels ?>
 							<?php $value = self::get_theme_option( 'num_front_panels' ); ?>
 							<p>Num Front Page Panels:&nbsp;</p><input type="text" name="theme_options[num_front_panels]" value="<?php echo esc_attr( $value ); ?>">
+						</div>
+						<div class="X2AdminSectionPart">
+							<?php // Number of Front Page Panels ?>
+							<?php $value = self::get_theme_option( 'landing_page_width' ); ?>
+							<p>Landing Page Width:&nbsp;</p><input type="text" name="theme_options[landing_page_width]" value="<?php echo esc_attr( $value ); ?>"><br />
+							<p>Width in percent or pixels Examples: 100% or 400px</p>
 						</div>
 					</div>
 					
@@ -503,6 +548,12 @@ if (! class_exists('X2_Theme_Options'))
 							<?php } ?>
 							</select>
 						</div>
+						
+						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'show_post_date' ); ?>
+							<p>Show Posted Date & Author:&nbsp;</p><input type="checkbox" name="theme_options[show_post_date]" <?php checked( $value, 'on' ); ?>>
+						</div>
+						
 					</div>
 					
 					<div class="X2AdminSection">
@@ -698,6 +749,11 @@ if (! class_exists('X2_Theme_Options'))
 								</option>
 							<?php } ?>
 							</select>
+						</div>
+						<div class="X2AdminSectionPart FooterText">
+							<?php $value = self::get_theme_option( 'footer_text' ); ?>
+							<p>Footer Text:&nbsp;</p>
+							<textarea name="theme_options[footer_text]"><?php echo $value; ?></textarea>
 						</div>
 					</div>
 					

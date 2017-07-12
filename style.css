@@ -111,6 +111,14 @@ footer, .colophon, .site-footer
 footer p, #colophon p, .site-footer p
 {
 	padding-top: 10px;
+	margin: 0;
+	margin-bottom: 5px;
+}
+footer .additionalFooterText, #colophon .additionalFooterText, .site-footer .additionalFooterText
+{
+	padding: 0;
+	margin: 0;
+	margin-bottom: 15px;
 }
 
 /* Front Page Tile Widgets Start */
@@ -226,11 +234,13 @@ body.error404 .site-content-contain, body.error404 #content, body.error404 #page
 }
 body.error404 #page
 {
+/*
 	background-image: url("./images/error.png");
 	background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center; 
 	background-size: cover;
+*/
 }
 .error404 .page-content p, .error404 .page-header h1
 {
@@ -239,5 +249,13 @@ body.error404 #page
 	border: 1px solid #bbb;
     -webkit-border-radius: 3px;
     border-radius: 3px;
+}
+
+.anchor
+{
+	display:block;
+	height:63px; /* this is the height of your header */
+	margin-top:-63px; /* this is again negative value of the height of your header */
+	visibility:hidden;
 }
 

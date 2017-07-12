@@ -33,6 +33,14 @@
 					</nav><!-- .social-navigation -->
 	<?php endif; ?>
 	<p>Copyright &copy; <?php echo date("Y") ?> <a href="<?php echo get_option('home'); ?>"><?php bloginfo('name'); ?></a>.  All rights reserved.</p>
+	<?php 
+		if (strlen(X2_get_theme_option( 'footer_text' )) > 3)
+		{
+			?>
+				<p class="additionalFooterText"><?php echo X2_get_theme_option( 'footer_text' ); ?></p>
+			<?php
+		}
+	?>
 </footer><!-- #colophon -->
 <?php wp_footer(); ?>
 </body>

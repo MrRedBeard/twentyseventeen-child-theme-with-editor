@@ -33,7 +33,7 @@ function childtheme_content_width( $content_width )
     }
     return $content_width;
 }
-add_filter( 'twentyseventeen_content_width', 'childtheme_content_width' );
+//add_filter( 'twentyseventeen_content_width', 'childtheme_content_width' );
 
 // Flex Width Header
 function childtheme_custom_header_args( $args ) 

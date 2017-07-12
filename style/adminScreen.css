@@ -35,7 +35,6 @@
 	height: 300px;
 	width: 80%;
 	margin: auto;
-	fubar: d4;
 }
 
 .X2AdminSectionPart
@@ -50,6 +49,20 @@
 .X2AdminSectionPart p, .X2AdminSectionPart input
 {
 	display: inline-block;
+}
+.FooterText
+{
+	vertical-align: middle;
+	width: 600px;
+	height: 90px;
+}
+.FooterText textarea
+{
+	height: 80px;
+}
+.FooterText p
+{
+	vertical-align: top;
 }
 /*************************************************************************/
 
@@ -194,3 +207,4 @@
 }
 
 /*************************************************************************/
+

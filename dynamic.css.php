@@ -120,14 +120,15 @@ header, #masthead
 {
 	background-color: <?php echo X2_get_theme_option( 'nav_sel_item_bkg_color' ); ?> !important;
 }
-#top-menu a
+#top-menu .menu-item a, #top-menu .current-menu-item ul li a
 {
-	color: <?php echo X2_get_theme_option( 'nav_item_link_color' ); ?> !important;
+	color: <?php echo X2_get_theme_option( 'nav_item_link_color' ); ?>;
 }
 #top-menu .current-menu-item a
 {
-	color: <?php echo X2_get_theme_option( 'nav_sel_item_link_color' ); ?> !important;
+	color: <?php echo X2_get_theme_option( 'nav_sel_item_link_color' ); ?>;
 }
+
 
 <?php //Layout 1 Nav at Top ?>
 <?php if ( has_nav_menu( 'top' ) && X2_get_theme_option( 'site_layout' ) == '1' ) : ?>

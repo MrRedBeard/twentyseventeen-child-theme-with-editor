@@ -25,16 +25,6 @@ function my_theme_enqueue_styles()
 }
 add_action( 'wp_enqueue_scripts', 'my_theme_enqueue_styles' );
 
-// Content Width
-function childtheme_content_width( $content_width ) 
-{
-    if ( twentyseventeen_is_frontpage() ) {
-        $content_width = 960;
-    }
-    return $content_width;
-}
-//add_filter( 'twentyseventeen_content_width', 'childtheme_content_width' );
-
 // Flex Width Header
 function childtheme_custom_header_args( $args ) 
 {
@@ -77,14 +67,26 @@ function child_admin_theme_css()
 }
 add_action( 'admin_enqueue_scripts', 'child_admin_theme_css' );
 
+function change_howdy($translated, $text, $domain) {
+
+    if (!is_admin() || 'default' != $domain)
+        return $translated;
+
+    if (false !== strpos($translated, 'Howdy'))
+        return str_replace('Howdy', 'Welcome', $translated);
+
+    return $translated;
+}
+add_filter('gettext', 'change_howdy', 10, 3);
+
 // Change the number of Twenty Seventeen Theme Front Page Sections
 function wpc_custom_front_sections( $num_sections )
 {
-	return 5; //Change this number to change the number of the sections.
+	return X2_get_theme_option( 'num_front_panels' ); //Change this number to change the number of the sections.
 }
 add_filter( 'twentyseventeen_front_page_sections', 'wpc_custom_front_sections' );
 
-// Custom Widgets
+// Custom Tile Widgets
 function x2_fptw_widgets_init() 
 {
 	register_sidebar( array(
@@ -98,5 +100,20 @@ function x2_fptw_widgets_init()
 	));
 }
 add_action('widgets_init', 'x2_fptw_widgets_init');
+
+// Custom Tile Widgets
+function x2_footer_widgets_init() 
+{
+	register_sidebar( array(
+		'name'          => 'Full Width Page Footer Widgets',
+		'id'            => 'x2-ftrw',
+		'description'	=> 'Only use the Text Widgets',
+		'before_widget' => '<div class="ftrw-widget">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h2>',
+		'after_title'   => '</h2>',
+	));
+}
+add_action('widgets_init', 'x2_footer_widgets_init');
 
 ?>

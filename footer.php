@@ -17,6 +17,15 @@
 		</div><!-- #content -->
 	</div><!-- .site-content-contain -->
 </div><!-- #page -->
+	<?php
+	//Front Page Tile Widgets
+	if(is_active_sidebar('x2-ftrw')): ?>
+		<div id="x2-ftrw" class="widget-area" role="complementary">
+			<?php 
+				dynamic_sidebar( 'x2-ftrw' ); 
+			?>
+		</div>
+	<?php endif; ?>	
 <footer id="colophon" class="site-footer" role="contentinfo">
 	<?php
 	if ( has_nav_menu( 'social' ) ) : ?>

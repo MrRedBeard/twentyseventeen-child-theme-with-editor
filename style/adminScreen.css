@@ -37,6 +37,12 @@
 	margin: auto;
 }
 
+.X2ThemeOptionsForm .smalltextarea, .X2AdminSection .smalltextarea, .smalltextarea
+{
+	height: 75px;
+}
+
+
 .X2AdminSectionPart
 {
 	width: 400px;

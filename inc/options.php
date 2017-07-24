@@ -17,6 +17,7 @@ if (! class_exists('X2_Theme_Options'))
 			{
 				add_action( 'admin_menu', array( 'X2_Theme_Options', 'add_admin_menu' ) );
 				add_action( 'admin_init', array( 'X2_Theme_Options', 'register_settings' ) );
+				//add_action( 'admin_init', array( 'X2_Theme_Options', 'remove_x2_option' ) );
 			}
 		}
 		
@@ -42,7 +43,7 @@ if (! class_exists('X2_Theme_Options'))
 				esc_html__( 'X2 Theme Settings', 'text-domain' ),
 				esc_html__( 'X2 Theme Settings', 'text-domain' ),
 				'manage_options',
-				'theme-settings',
+				'x2-theme-settings',
 				array( 'X2_Theme_Options', 'create_admin_page' )
 			);
 		}
@@ -51,6 +52,19 @@ if (! class_exists('X2_Theme_Options'))
 		public static function register_settings() 
 		{
 			register_setting( 'theme_options', 'theme_options', array( 'X2_Theme_Options', 'sanitize' ) );
+		}
+		
+		public static function remove_x2_option () 
+		{
+			//$option_name = 'theme_mods_twentyseventeenX2';
+			//$option_name = 'x2Tr';
+			//$option_name = 'X2_Theme_Options';
+			//$option_name = 'twentyseventeenX2';
+			$option_name = 'theme_options';
+			
+			delete_option( $option_name );
+			delete_site_option( $option_name );
+			remove_theme_support( $option_name );
 		}
 		
 		// Sanitization callback
@@ -176,7 +190,7 @@ if (! class_exists('X2_Theme_Options'))
 						</div>
 					</div>
 					
-					<div class="X2AdminSection">
+					<!--<div class="X2AdminSection">
 						<h2>Slider</h2>
 						<div class="X2AdminSectionPart">
 							<?php $value = self::get_theme_option( 'x2Tr' ); ?>
@@ -212,7 +226,7 @@ if (! class_exists('X2_Theme_Options'))
 								}
 							</script>
 						</div>
-					</div>
+					</div>-->
 					
 					
 					<div class="X2AdminSection">
@@ -234,8 +248,76 @@ if (! class_exists('X2_Theme_Options'))
 						<h2>Site Overall</h2>
 						<div class="X2AdminSectionPart">
 							<?php $value = self::get_theme_option( 'bkg_color' ); ?>
-							<p>Background Color:&nbsp;</p><input type="text" class="colorPicker" name="theme_options[bkg_color]" value="<?php echo $value; ?>">
+							<p>Background Color (Very Back):&nbsp;</p><input type="text" class="colorPicker" name="theme_options[bkg_color]" value="<?php echo $value; ?>">
 						</div>
+						
+						<div class="X2AdminSectionPart">
+<?php
+	
+?>
+						
+							<?php $value = self::get_theme_option( 'bkg_image' ); ?>
+							<p>Background Image:</p><br />
+							<?php
+							if( intval( $value ) > 0 ) 
+							{
+								// Change with the image size you want to use
+								$image = wp_get_attachment_image( $value, 'thumb', false, array( 'id' => 'x2-preview-image' ) );
+							}
+							else 
+							{
+								// Some default image
+								$value = '';
+								$image = '';
+								?>
+									<p id="x2-preview-image">No image defined</p>
+								<?php
+							}
+							?>
+							
+							<?php echo $image; ?> <br />
+							
+							<input type='button' value="<?php esc_attr_e( 'Select a image', 'mytextdomain' ); ?>" id="x2_media_manager"/>
+							<input type='button' value="Remove Image" onclick="x2RemoveBKGImage();" />
+							<input onchange="x2bkgimgchange(this.value);" type="hidden" name="theme_options[bkg_image]" id="x2_image_id" value="<?php echo $value; ?>" class="regular-text" />
+							<br />
+							<?php $value = self::get_theme_option( 'bkg_image_size' ); ?>
+							<p>Background Image Size:&nbsp;</p><input type="text" name="theme_options[bkg_image_size]" value="<?php echo $value; ?>">
+							<br />
+							
+							<?php $value = self::get_theme_option( 'bkg_image_repeat' ); ?>
+							<p>Background Image Repeat:&nbsp;</p>
+							<select name="theme_options[bkg_image_repeat]">
+							<?php
+							$options = array(
+									'repeat' => esc_html__( 'repeat', 'text-domain' ),
+									'repeat-x' => esc_html__( 'repeat-x', 'text-domain' ),
+									'repeat-y' => esc_html__( 'repeat-y', 'text-domain' ),
+									'no-repeat' => esc_html__( 'no-repeat', 'text-domain' ),
+								);
+							foreach ( $options as $id => $label ) { ?>
+									<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $value, $id, true ); ?>>
+										<?php echo strip_tags( $label ); ?>
+									</option>
+								<?php } ?>
+							</select>
+							<?php $value = self::get_theme_option( 'bkg_image_attachment' ); ?>
+							<p>Background Image Attachment: &nbsp;</p>
+							<select name="theme_options[bkg_image_attachment]">
+							<?php
+							$options = array(
+									'scroll' => esc_html__( 'scroll', 'text-domain' ),
+									'fixed' => esc_html__( 'fixed', 'text-domain' ),
+									'local' => esc_html__( 'local', 'text-domain' ),
+								);
+							foreach ( $options as $id => $label ) { ?>
+									<option value="<?php echo esc_attr( $id ); ?>" <?php selected( $value, $id, true ); ?>>
+										<?php echo strip_tags( $label ); ?>
+									</option>
+								<?php } ?>
+							</select>
+						</div>
+						
 						<div class="X2AdminSectionPart">
 							<?php $value = self::get_theme_option( 'text_color' ); ?>
 							<p>Text Color:&nbsp;</p><input type="text" class="colorPicker" name="theme_options[text_color]" value="<?php echo $value; ?>">
@@ -764,7 +846,21 @@ if (! class_exists('X2_Theme_Options'))
 						<textarea name="theme_options[custom_css]"><?php echo $value; ?></textarea>
 					</div>
 						
-						
+					
+					
+					<div class="X2AdminSection">
+						<h2>Design Credits</h2>
+						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'show_design_credits' ); ?>
+							<p>Show Design Credits:&nbsp;</p><input type="checkbox" name="theme_options[show_design_credits]" <?php checked( $value, 'on' ); ?>>
+						</div>
+						<br />
+						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'design_credits' ); ?>
+							<p>Design Credits Text:&nbsp;</p>
+							<textarea class="smalltextarea" name="theme_options[design_credits]"><?php echo $value; ?></textarea>
+						</div>
+					</div>
 
 						
 

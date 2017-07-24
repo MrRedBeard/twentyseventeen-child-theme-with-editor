@@ -50,6 +50,7 @@ jQuery(document).ready(function($)
 {
 	$(".colorPicker").spectrum({
 		color: "",
+		showAlpha: true,
 		flat: false,
 		showInput: true,
 		className: "full-spectrum",
@@ -57,7 +58,7 @@ jQuery(document).ready(function($)
 		showPalette: false,
 		showSelectionPalette: false,
 		maxPaletteSize: 10,
-		preferredFormat: "hex",
+		preferredFormat: "rgb",
 		localStorageKey: "spectrum.x2",
 		move: function (color) {
 			

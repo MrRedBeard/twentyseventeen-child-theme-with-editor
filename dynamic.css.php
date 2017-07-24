@@ -14,14 +14,16 @@
 ?>
 
 /* WHOLE PAGE (color) */
-#page, body.colors-dark, .colors-dark .site-content-contain, .colors-dark
-{
+html, body, #page, .page
+{	
 	background-color: <?php echo X2_get_theme_option( 'bkg_color' ); ?> !important;
 	font-family: <?php echo X2_get_theme_option( 'site_font' ); ?> !important;
 }
 
+/* #page, body.colors-dark, .colors-dark .site-content-contain, .colors-dark */
+
 #page, #page p, #page div
-{
+{	
 	color: <?php echo X2_get_theme_option( 'text_color' ); ?>;
 }
 #page a
@@ -164,21 +166,40 @@ header, #masthead
 }
 <?php endif; ?>
 
-/* Landing Page Content Width */
-#primary #main .page .panel-content .wrap
+/* All content width XXLanding Page Content WidthXX */
+#primary #main .page .panel-content .wrap, .navigation-top .wrap, .site-branding .wrap, #content .wrap
 {
 	<?php
 		if (strlen(X2_get_theme_option( 'landing_page_width' )) > 1)
 		{
 		?>
-			max-width: <?php echo X2_get_theme_option( 'landing_page_width' ); ?> !important;;
-			width: <?php echo X2_get_theme_option( 'landing_page_width' ); ?> !important;;
+			max-width: <?php echo X2_get_theme_option( 'landing_page_width' ); ?>;
+			width: <?php echo X2_get_theme_option( 'landing_page_width' ); ?>;
 		<?php
 		}
 		?>
 		
 }
 
+
+/* Background Image Start */
+<?php
+$value = X2_get_theme_option( 'bkg_image' );
+if( intval( $value ) > 0 ) 
+{
+	$image = wp_get_attachment_url($value);
+	?>
+	#page
+	{
+		background: url("<?php echo $image; ?>");
+		background-size: <?php echo X2_get_theme_option( 'bkg_image_size' ); ?>;
+		background-repeat: <?php echo X2_get_theme_option( 'bkg_image_repeat' ); ?>;
+		background-attachment: <?php echo X2_get_theme_option( 'bkg_image_attachment' ); ?>;
+	}
+	<?php
+}
+?>
+/* Background Image End */
 
 /* CONTENT (color) */
 .site-content-contain

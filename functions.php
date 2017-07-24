@@ -67,6 +67,33 @@ function child_admin_theme_css()
 }
 add_action( 'admin_enqueue_scripts', 'child_admin_theme_css' );
 
+/* Media Selector */
+function load_wp_media_files( $page )
+{
+	if(strpos($page, 'x2-theme-settings') !== false) 
+	{
+		// Enqueue WordPress media scripts
+		wp_enqueue_media();
+		// Enqueue custom script that will interact with wp.media
+		wp_enqueue_script( 'media_script', get_stylesheet_directory_uri() . '/scripts/media.js', array('jquery'), '0.1' );
+	}
+}
+add_action( 'admin_enqueue_scripts', 'load_wp_media_files' );
+
+//Ajax call to get new image see media.js Refresh_Image(the_id)
+function x2_get_image() {
+    if(isset($_GET['id']) ){
+        $image = wp_get_attachment_image( filter_input( INPUT_GET, 'id', FILTER_VALIDATE_INT ), 'thumb', false, array( 'id' => 'x2-preview-image' ) );
+        $data = array(
+            'image'    => $image,
+        );
+        wp_send_json_success( $data );
+    } else {
+        wp_send_json_error();
+    }
+}
+add_action( 'wp_ajax_x2_get_image', 'x2_get_image'   );
+
 function change_howdy($translated, $text, $domain) {
 
     if (!is_admin() || 'default' != $domain)

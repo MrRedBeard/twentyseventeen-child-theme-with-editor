@@ -50,6 +50,14 @@
 			<?php
 		}
 	?>
+	<?php 
+		if (X2_get_theme_option( 'show_design_credits' ))
+		{
+			?>
+				<div id="x2design_credits"><?php echo X2_get_theme_option( 'design_credits' ); ?></div>
+			<?php
+		}
+	?>
 </footer><!-- #colophon -->
 <?php wp_footer(); ?>
 </body>

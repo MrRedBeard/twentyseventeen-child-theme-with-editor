@@ -319,6 +319,10 @@ if (! class_exists('X2_Theme_Options'))
 						</div>
 						
 						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'featured_img_header' ); ?>
+							<p>Featured Image as Header:&nbsp;</p><input type="checkbox" name="theme_options[featured_img_header]" <?php checked( $value, 'on' ); ?>>
+						</div>
+						<div class="X2AdminSectionPart">
 							<?php $value = self::get_theme_option( 'text_color' ); ?>
 							<p>Text Color:&nbsp;</p><input type="text" class="colorPicker" name="theme_options[text_color]" value="<?php echo $value; ?>">
 						</div>
@@ -603,6 +607,10 @@ if (! class_exists('X2_Theme_Options'))
 						<div class="X2AdminSectionPart">
 							<?php $value = self::get_theme_option( 'content_border_thick' ); ?>
 							<p>Border Thickness:&nbsp;</p><input type="text" name="theme_options[content_border_thick]" value="<?php echo esc_attr( $value ); ?>">
+						</div>
+						<div class="X2AdminSectionPart">
+							<?php $value = self::get_theme_option( 'content_border_color' ); ?>
+							<p>Border Color:&nbsp;</p><input type="text" class="colorPicker" name="theme_options[content_border_color]" value="<?php echo $value; ?>">
 						</div>
 						<div class="X2AdminSectionPart">
 							<?php $value = self::get_theme_option( 'content_border_style' ); ?>

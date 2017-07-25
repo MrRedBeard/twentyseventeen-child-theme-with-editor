@@ -12,43 +12,66 @@ Tags: light, dark, two-columns, right-sidebar, responsive-layout, accessibility-
 Text Domain: twentyseventeen-child
 */
 
+/* Reset Start */
+/* Fill Page */
 html, body
 {
-	font-family: 'Lato', sans-serif;
 	min-height: 100%;
 	height: 100%;
 }
-
-/* Allows application of custom colors */
-#content, #main, .panel-content, .page, #main .page
-{
-	background-color: transparent !important;
-}
-
 #page
 {
 	min-height: 100%;
 }
-
 #page .site-content-contain, #content
 {
 	min-height: 100%;
 	height: 100%;
 }
-#page .site-content-contain
+/* Header items on same level */
+.site-branding
 {
-	
+	vertical-align: middle;
 }
-
+.navigation-top .wrap, .site-branding .wrap
+{
+	padding-left: 0;
+	padding-right: 0;
+}
+a, span, h1, h2, h3, h4, #main .edit-link, #main .post-edit-link
+{
+	text-decoration: none !important;
+	border: none !important;
+	box-shadow: none !important;
+	-webkit-box-shadow: none !important;
+}
+#main .edit-link, #main .post-edit-link
+{
+	position: relative;
+}
 /* Force sticky navigation into position */
 #page-header 
 {
   margin-bottom: 0 !important;
 }
-
-.site-branding
+/* Allows application of custom colors */
+#content, #main, .panel-content, .page, #main .page
 {
-	vertical-align: middle;
+	background-color: transparent !important;
+}
+/* Reset End */
+
+
+
+html, body
+{
+	font-family: 'Lato', sans-serif;
+}
+
+
+#page .site-content-contain
+{
+	
 }
 
 /* Logo */
@@ -86,13 +109,6 @@ html, body
 	font-size: 17px;
 	opacity: 1;
 }
-
-.navigation-top .wrap, .site-branding .wrap
-{
-	padding-left: 0;
-	padding-right: 0;
-}
-
 
 /* Force header image to full height */
 #custom-header-media 
@@ -148,8 +164,6 @@ html, body
 {
 	height: 500px;
 }
-
-
 
 footer, .colophon, .site-footer
 {

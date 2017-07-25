@@ -42,7 +42,8 @@
 
 	<?php
 	// If a regular post or page, and not the front page, show the featured image.
-	if ( has_post_thumbnail() && ( is_single() || ( is_page() && twentyseventeen_is_frontpage() ) ) ) :
+	//is_single() is_page() featured_img_header
+	if ( has_post_thumbnail() && (twentyseventeen_is_frontpage() || (X2_get_theme_option( 'featured_img_header' ) && is_single()) || (X2_get_theme_option( 'featured_img_header' ) && is_page())  )) :
 		echo '<div class="single-featured-image-header">';
 		the_post_thumbnail( 'twentyseventeen-featured-image' );
 		echo '</div><!-- .single-featured-image-header -->';

@@ -194,6 +194,10 @@ footer .additionalFooterText, #colophon .additionalFooterText, .site-footer .add
 	text-align: center;
 	vertical-align: top;
 }
+#x2-fptw ul, #x2-fptw ul li
+{
+	list-style-type: none;
+}
 #x2-fptw .fptw-widget
 {
 	margin: 10px;
